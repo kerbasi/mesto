@@ -1,4 +1,7 @@
 ﻿.profile__info-subtitle {
   grid-column: span 2;
   margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
 }

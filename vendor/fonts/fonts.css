@@ -10,20 +10,20 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("./inter/Inter-Bold.eot");
-  src: local("☺"), url("./inter/Inter-Bold.woff") format("woff"),
-    url("./inter/Inter-Bold.ttf") format("truetype"),
-    url("./inter/Inter-Bold.svg") format("svg");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
   src: url("./inter/Inter-Black.eot");
   src: local("☺"), url("./inter/Inter-Black.woff") format("woff"),
     url("./inter/Inter-Black.ttf") format("truetype"),
     url("./inter/Inter-Black.svg") format("svg");
   font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./inter/Inter-Medium.eot");
+  src: local("☺"), url("./inter") format("woff"),
+    url("./inter/Inter-Medium.ttf") format("truetype"),
+    url("./inter/Inter-Medium.svg") format("svg");
+  font-weight: 500;
   font-style: normal;
 }
