@@ -1,1 +1,5 @@
-﻿
+﻿@media screen and (max-width: 768px) {
+  .header__logo {
+    margin-left: calc(27 / 320 * 100%);
+  }
+}
