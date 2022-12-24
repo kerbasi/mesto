@@ -2,5 +2,6 @@
   font-family: "Inter", Arial, Helvetica, sans-serif;
   background: #000;
   color: #fff;
+  max-width: 1280px;
   margin: 0 auto;
 }
