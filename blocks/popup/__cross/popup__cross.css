@@ -32,3 +32,24 @@
 .popup__cross:hover::after {
   background: rgba(255, 255, 255, 0.6);
 }
+
+@media screen and (max-width: 768px) {
+  .popup__cross {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -8px;
+    top: -47px;
+    padding: 5px;
+  }
+
+  .popup__cross::before,
+  .popup__cross::after {
+    width: 26px;
+    height: 2px;
+  }
+
+  .popup__cross::after {
+    transform: translate(-6px, 12px) rotate(45deg);
+  }
+}
