@@ -9,14 +9,14 @@ const profileAbout = document.querySelector(".profile__info-subtitle");
 
 editButton.addEventListener("click", () => {
   popup.classList.add("popup_opened");
-  document.addEventListener("keydown", escHandler);
+  window.addEventListener("keydown", escHandler);
   form.name.value = profileName.textContent;
   form.about.value = profileAbout.textContent;
 });
 
 quitButton.addEventListener("click", () => {
   popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", escHandler);
+  window.removeEventListener("keydown", escHandler);
 });
 
 saveButton.addEventListener("click", (event) => {
@@ -29,6 +29,6 @@ saveButton.addEventListener("click", (event) => {
 function escHandler(e) {
   if (e.key === "Escape") {
     popup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", escHandler);
+    window.removeEventListener("keydown", escHandler);
   }
 }
