@@ -7,22 +7,25 @@
 }
 
 .popup__cross::after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 45px;
-  height: 2px;
+  content: "";
+  transform: translate(-6px, 14px) rotate(45deg);
   display: block;
-  border-bottom: 2px solid #fff;
+  /* position: absolute;
+  left: 0;
+  top: 0; */
+  width: 45px;
+  height: 4px;
+  background: #fff;
 }
 
 .popup__cross::before {
+  content: "";
+  transform: translate(-6px, 14px) rotate(-45deg);
   position: absolute;
   display: block;
-  bottom: 0;
+  top: 0;
   left: 0;
-
   width: 45px;
-  height: 2px;
-  border-bottom: 2px solid #fff;
+  height: 4px;
+  background: #fff;
 }
