@@ -1,16 +1,17 @@
 ﻿.popup__input {
   margin: 0;
-  margin-top: 30px;
+  margin-top: 24px;
   width: 358px;
   height: 27px;
   border: none;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 4px;
 }
 
 .popup__input:first-of-type {
-  margin-top: 54px;
+  margin-top: 42px;
 }
 
 @media screen and (max-width: 768px) {
