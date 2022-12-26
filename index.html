@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./vendor/normalize.css">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
   <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
@@ -18,42 +17,43 @@
       <img src="./images/avatar.jpg" alt="аватар пользователя" class="profile__avatar">
       <div class="profile__info">
         <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button"><img class="profile__edit-image" src="./images/edit.svg"
+        <button type="button" class="profile__edit-button"><img class="profile__edit-image" src="./images/edit.svg"
             alt="знак карандаша"></button>
         <p class="profile__info-subtitle">Исследователь океана</p>
       </div>
-      <button class="profile__add-button"><img src="./images/plus.svg" alt="знак плюс"></button>
+      <button type="button" class="profile__add-button"><img class="profile__add-image" src="./images/plus.svg"
+          alt="знак плюс"></button>
     </section>
     <section class="elements main__elements">
       <article class="element">
         <img src="./images/aleksandr-popov-lXaOSpd_UQw-unsplash.jpg" alt="фото москвы" class="element__image">
         <h2 class="element__title">Москва</h2>
-        <div class="element__heart-image"></div>
+        <button class="element__heart-image" type="button"></button>
       </article>
       <article class="element">
         <img src="./images/daniil-smetanin-q61fhpgLAgQ-unsplash.jpg" alt="фото санкт-петербурга" class="element__image">
         <h2 class="element__title">Санкт-петербург</h2>
-        <div class="element__heart-image"></div>
+        <button class="element__heart-image" type="button"></button>
       </article>
       <article class="element">
         <img src="./images/artem-shuba-51ZWho_sWyA-unsplash.jpg" alt="фото тюмени" class="element__image">
         <h2 class="element__title">Тюмень</h2>
-        <div class="element__heart-image"></div>
+        <button class="element__heart-image" type="button"></button>
       </article>
       <article class="element">
         <img src="./images/artem-maltsev-h31mHmLFX_A-unsplash.jpg" alt="фото карелии" class="element__image">
         <h2 class="element__title">Карелия</h2>
-        <div class="element__heart-image"></div>
+        <button class="element__heart-image" type="button"></button>
       </article>
       <article class="element">
         <img src="./images/ekaterina-sazonova-PoQYDgPfx8I-unsplash.jpg" alt="фото байкала" class="element__image">
         <h2 class="element__title">Байкал</h2>
-        <div class="element__heart-image"></div>
+        <button class="element__heart-image" type="button"></button>
       </article>
       <article class="element">
         <img src="./images/evgeniy-ivanov-uR53t1QiRTw-unsplash.jpg" alt="фото чебоксар" class="element__image">
         <h2 class="element__title">Чебоксары</h2>
-        <div class="element__heart-image"></div>
+        <button class="element__heart-image" type="button"></button>
       </article>
     </section>
   </main>
@@ -62,12 +62,13 @@
   </footer>
   <div class="popup">
     <div class="popup__container">
-      <div class="popup__cross"></div>
-      <form action="#" class="popup__form">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__text-input" name="name" value="">
-        <input type="text" class="popup__text-input" name="about" value="">
-        <button class="popup__button">Сохранить</button>
+      <button type="reset" class="popup__cross"><img src="./images/cross.svg" alt="иконка крестика"
+          class="popup__cross-image"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form action="#" class="popup__form" name="form">
+        <input type="text" class="popup__input popup__input_type_name" name="name" value="">
+        <input type="text" class="popup__input popup__input_type_about" name="about" value="">
+        <button type="submit" class="popup__button">Сохранить</button>
       </form>
     </div>
   </div>
