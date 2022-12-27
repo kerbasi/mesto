@@ -7,6 +7,13 @@ const formName = form.querySelector(".popup__input_type_name");
 const formAbout = form.querySelector(".popup__input_type_about");
 const profileName = document.querySelector(".profile__info-title");
 const profileAbout = document.querySelector(".profile__info-subtitle");
+const elements = document.querySelector(".elements");
+
+elements.addEventListener("click", (event) => {
+  if (Array.from(event.target.classList).includes("element__heart-image")) {
+    event.target.classList.toggle("element__heart-image_active");
+  }
+});
 
 function openForm() {
   popup.classList.add("popup_opened");
