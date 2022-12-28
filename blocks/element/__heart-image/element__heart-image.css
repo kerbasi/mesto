@@ -11,3 +11,9 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+@media (hover: none) {
+  .element__heart-image:hover {
+    opacity: 1;
+  }
+}
