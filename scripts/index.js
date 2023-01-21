@@ -35,6 +35,7 @@ const formAbout = form.querySelector(".popup__input_type_about");
 const profileName = document.querySelector(".profile__info-title");
 const profileAbout = document.querySelector(".profile__info-subtitle");
 const elements = document.querySelector(".elements");
+const elementTemplate = document.querySelector("#card-template");
 
 function openForm() {
   popup.classList.add("popup_opened");
@@ -59,6 +60,23 @@ function heartToggler(event) {
   }
 }
 
+function renderElement(name = "", link = "") {
+  const element = elementTemplate.content
+    .querySelector(".element")
+    .cloneNode(true);
+  const elementTitle = element.querySelector(".element__title");
+  const elementImage = element.querySelector(".element__image");
+  elementTitle.textContent = name;
+  elementImage.style.background = `url(${link}) center / cover`;
+  elements.append(element);
+}
+
+function renderElements(cards) {
+  cards.forEach((card) => {
+    renderElement(card.name, card.link);
+  });
+}
+
 editButton.addEventListener("click", openForm);
 
 quitButton.addEventListener("click", closeForm);
@@ -66,3 +84,5 @@ quitButton.addEventListener("click", closeForm);
 form.addEventListener("submit", saveForm);
 
 elements.addEventListener("click", heartToggler);
+
+renderElements(initialCards);
