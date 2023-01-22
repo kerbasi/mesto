@@ -45,7 +45,8 @@ function createElement(name = "", link = "") {
   const elementTitle = element.querySelector(".element__title");
   const elementImage = element.querySelector(".element__image");
   elementTitle.textContent = name;
-  elementImage.style.background = `url(${link}) center / cover`;
+  elementImage.setAttribute("src", link);
+  elementImage.setAttribute("alt", `изображение ${name}`);
   return element;
 }
 
@@ -117,7 +118,7 @@ function handleElementClick(event) {
   } else if (eventClassList.includes("element__heart-image")) {
     toggleHeartClass(element);
   } else if (eventClassList.includes("element__image")) {
-    const url = element.style.background.split('"')[1];
+    const url = element.getAttribute("src");
     const name = Array.from(element.parentNode.children).filter((element) =>
       Array.from(element.classList).includes("element__title")
     )[0].textContent;
