@@ -76,7 +76,7 @@ function openPopup(element, title, url) {
   }
 
   element.classList.add("popup_opened");
-  page.style.overflow = "hidden";
+  // page.style.overflow = "hidden";
 }
 
 function closePopup(event) {
@@ -87,7 +87,7 @@ function closePopup(event) {
     element = event.target.parentNode.parentNode.parentNode;
   }
   element.classList.remove("popup_opened");
-  page.style.overflow = "scroll";
+  // page.style.overflow = "scroll";
 }
 
 function saveForm(event) {
@@ -106,15 +106,15 @@ function saveForm(event) {
 
 function handleElementClick(event) {
   const eventClassList = Array.from(event.target.classList);
-  const element = event.target.parentNode;
+  const element = event.target;
   if (eventClassList.includes("element__trash-image")) {
-    deleteCard(element);
+    deleteCard(element.parentNode);
   } else if (eventClassList.includes("element__heart-image")) {
     toggleHeartClass(element);
   } else if (eventClassList.includes("element__image")) {
-    const url = event.target.style.background.split('"')[1];
-    const name = Array.from(event.target.parentNode.children).filter(
-      (element) => Array.from(element.classList).includes("element__title")
+    const url = element.style.background.split('"')[1];
+    const name = Array.from(element.parentNode.children).filter((element) =>
+      Array.from(element.classList).includes("element__title")
     )[0].textContent;
 
     openPopup(imagePopup, name, url);
