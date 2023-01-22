@@ -25,11 +25,13 @@
   },
 ];
 
+const page = document.querySelector(".page");
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__info-title");
 const profileAbout = document.querySelector(".profile__info-subtitle");
 const personPopup = document.querySelector(".popup_type_person");
+const addImagePopup = document.querySelector(".popup_type_add-image");
 const imagePopup = document.querySelector(".popup_type_image");
 const elements = document.querySelector(".elements");
 const elementTemplate = document.querySelector("#card-template");
@@ -53,22 +55,31 @@ function renderInitialElements(cards) {
   });
 }
 
-function openForm(element) {
+function openPopup(element, title, url) {
+  const elementClassList = Array.from(element.classList);
   const formTitle = element.querySelector(".popup__input_type_title");
   const formData = element.querySelector(".popup__input_type_data");
-  element.classList.add("popup_opened");
-  if (Array.from(element.classList).includes("popup_type_person")) {
+  const popupTitle = element.querySelector(".popup__title");
+  const popupImage = element.querySelector(".popup__image");
+
+  if (elementClassList.includes("popup_type_image")) {
+    popupTitle.textContent = title;
+    popupImage.setAttribute("src", url);
+  } else if (elementClassList.includes("popup_type_person")) {
     formTitle.value = profileName.textContent;
     formData.value = profileAbout.textContent;
-  } else {
+  } else if (elementClassList.includes("popup_type_add-image")) {
     formTitle.value = "";
     formData.value = "";
     formTitle.placeholder = "Название";
     formData.placeholder = "Ссылка на картинку";
   }
+
+  element.classList.add("popup_opened");
+  page.style.overflow = "hidden";
 }
 
-function closeForm(event) {
+function closePopup(event) {
   let element;
   if (Array.from(event.target.classList).includes("popup__form")) {
     element = event.target.parentNode.parentNode;
@@ -76,6 +87,7 @@ function closeForm(event) {
     element = event.target.parentNode.parentNode.parentNode;
   }
   element.classList.remove("popup_opened");
+  page.style.overflow = "scroll";
 }
 
 function saveForm(event) {
@@ -89,37 +101,51 @@ function saveForm(event) {
   } else {
     elements.prepend(createElement(formTitle.value, formData.value));
   }
-  closeForm(event);
+  closePopup(event);
 }
 
-function handleTrashClick(event) {
-  if (Array.from(event.target.classList).includes("element__trash-image")) {
-    event.target.parentNode.remove();
+function handleElementClick(event) {
+  const eventClassList = Array.from(event.target.classList);
+  const element = event.target.parentNode;
+  if (eventClassList.includes("element__trash-image")) {
+    deleteCard(element);
+  } else if (eventClassList.includes("element__heart-image")) {
+    toggleHeartClass(element);
+  } else if (eventClassList.includes("element__image")) {
+    const url = event.target.style.background.split('"')[1];
+    const name = Array.from(event.target.parentNode.children).filter(
+      (element) => Array.from(element.classList).includes("element__title")
+    )[0].textContent;
+
+    openPopup(imagePopup, name, url);
   }
 }
 
-function handleHeartClick(event) {
-  if (Array.from(event.target.classList).includes("element__heart-image")) {
-    event.target.classList.toggle("element__heart-image_active");
-  }
+function deleteCard(element) {
+  element.remove();
+}
+
+function toggleHeartClass(element) {
+  element.classList.toggle("element__heart-image_active");
 }
 
 Array.from(popups).forEach((popup) => {
-  const form = popup.querySelector(".popup__form");
+  if (!Array.from(popup.classList).includes("popup_type_image")) {
+    const form = popup.querySelector(".popup__form");
+    form.addEventListener("submit", saveForm);
+  }
   const quitButton = popup.querySelector(".popup__cross");
-  quitButton.addEventListener("click", closeForm);
-  form.addEventListener("submit", saveForm);
+  quitButton.addEventListener("click", closePopup);
 });
 
 editButton.addEventListener("click", () => {
-  openForm(personPopup);
+  openPopup(personPopup);
 });
 
 addButton.addEventListener("click", () => {
-  openForm(imagePopup);
+  openPopup(addImagePopup);
 });
 
-elements.addEventListener("click", handleHeartClick);
-elements.addEventListener("click", handleTrashClick);
+elements.addEventListener("click", handleElementClick);
 
 renderInitialElements(initialCards);
