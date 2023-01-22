@@ -74,7 +74,6 @@ function openPopup(element, title, url) {
     formTitle.placeholder = "Название";
     formData.placeholder = "Ссылка на картинку";
   }
-
   element.classList.add("popup_opened");
 }
 
@@ -102,6 +101,14 @@ function saveForm(event) {
   closePopup(event);
 }
 
+function deleteCard(element) {
+  element.remove();
+}
+
+function toggleHeartClass(element) {
+  element.classList.toggle("element__heart-image_active");
+}
+
 function handleElementClick(event) {
   const eventClassList = Array.from(event.target.classList);
   const element = event.target;
@@ -114,17 +121,8 @@ function handleElementClick(event) {
     const name = Array.from(element.parentNode.children).filter((element) =>
       Array.from(element.classList).includes("element__title")
     )[0].textContent;
-
     openPopup(imagePopup, name, url);
   }
-}
-
-function deleteCard(element) {
-  element.remove();
-}
-
-function toggleHeartClass(element) {
-  element.classList.toggle("element__heart-image_active");
 }
 
 Array.from(popups).forEach((popup) => {
