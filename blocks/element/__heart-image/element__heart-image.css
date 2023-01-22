@@ -4,7 +4,7 @@
   margin-right: 20px;
   width: 22px;
   height: 19px;
-  background: url(../../../images/heart.svg) #fff;
+  background: url(../../../images/heart.svg) #fff no-repeat;
 }
 
 .element__heart-image:hover {

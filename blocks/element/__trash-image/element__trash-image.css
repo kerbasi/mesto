@@ -5,5 +5,5 @@
   border: transparent;
   top: 20px;
   right: 20px;
-  background: url(../../../images/Trash.svg);
+  background: url(../../../images/Trash.svg) no-repeat;
 }
