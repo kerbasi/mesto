@@ -66,6 +66,7 @@ function openPopup(element, title, url) {
   if (elementClassList.includes("popup_type_image")) {
     popupTitle.textContent = title;
     popupImage.setAttribute("src", url);
+    popupImage.setAttribute("alt", `увеличенное изображение ${title}`);
   } else if (elementClassList.includes("popup_type_person")) {
     formTitle.value = profileName.textContent;
     formData.value = profileAbout.textContent;
