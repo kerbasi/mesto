@@ -6,4 +6,5 @@
   top: 20px;
   right: 20px;
   background: url(../../../images/Trash.svg) no-repeat;
+  /* z-index: 10; */
 }

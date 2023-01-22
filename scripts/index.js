@@ -92,6 +92,12 @@ function saveForm(event) {
   closeForm(event);
 }
 
+function handleTrashClick(event) {
+  if (Array.from(event.target.classList).includes("element__trash-image")) {
+    event.target.parentNode.remove();
+  }
+}
+
 function handleHeartClick(event) {
   if (Array.from(event.target.classList).includes("element__heart-image")) {
     event.target.classList.toggle("element__heart-image_active");
@@ -114,5 +120,6 @@ addButton.addEventListener("click", () => {
 });
 
 elements.addEventListener("click", handleHeartClick);
+elements.addEventListener("click", handleTrashClick);
 
 renderInitialElements(initialCards);
