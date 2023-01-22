@@ -76,7 +76,6 @@ function openPopup(element, title, url) {
   }
 
   element.classList.add("popup_opened");
-  // page.style.overflow = "hidden";
 }
 
 function closePopup(event) {
@@ -87,7 +86,6 @@ function closePopup(event) {
     element = event.target.parentNode.parentNode.parentNode;
   }
   element.classList.remove("popup_opened");
-  // page.style.overflow = "scroll";
 }
 
 function saveForm(event) {
