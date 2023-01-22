@@ -8,3 +8,14 @@
   background: url(../../../images/Trash.svg) no-repeat;
   /* z-index: 10; */
 }
+
+.element__trash-image:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media (hover: none) {
+  .element__trash-image:hover {
+    opacity: 1;
+  }
+}
