@@ -64,11 +64,19 @@ function renderInitialElements(cardsData) {
   );
 }
 
+function handleEscPress(evt) {
+  if (evt.key === `Escape`) {
+    closePopup(document.querySelector(".popup_opened"));
+  }
+}
+
 function openPopup(element) {
+  document.addEventListener("keydown", handleEscPress);
   element.classList.add("popup_opened");
 }
 
 function closePopup(element) {
+  document.removeEventListener("keydown", handleEscPress);
   element.classList.remove("popup_opened");
 }
 
@@ -117,7 +125,6 @@ addImageForm.addEventListener("submit", handleAddButtonSubmit);
 
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
-    console.log(evt.target.classList);
     if (evt.target.classList.contains("popup_opened")) {
       closePopup(popup);
     }
