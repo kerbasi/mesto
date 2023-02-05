@@ -2,10 +2,10 @@
 const addButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__info-title");
 const profileAbout = document.querySelector(".profile__info-subtitle");
-const personPopup = document.querySelector(".popup_type_person");
-const personForm = personPopup.querySelector(".popup__form");
-const personPopupName = personPopup.querySelector(".popup__input_type_title");
-const personPopupAbout = personPopup.querySelector(".popup__input_type_data");
+const profilePopup = document.querySelector(".popup_type_person");
+const profileForm = profilePopup.querySelector(".popup__form");
+const profilePopupName = profilePopup.querySelector(".popup__input_type_title");
+const profilePopupAbout = profilePopup.querySelector(".popup__input_type_data");
 const popups = document.querySelectorAll(".popup");
 const addImagePopup = document.querySelector(".popup_type_add-image");
 const addImageForm = addImagePopup.querySelector(".popup__form");
@@ -81,21 +81,21 @@ function closePopup(element) {
 }
 
 function handleEditButtonClick() {
-  if (!personPopupName.value) {
-    personPopupName.value = profileName.textContent;
+  if (!profilePopupName.value) {
+    profilePopupName.value = profileName.textContent;
   }
-  if (!personPopupAbout.value) {
-    personPopupAbout.value = profileAbout.textContent;
+  if (!profilePopupAbout.value) {
+    profilePopupAbout.value = profileAbout.textContent;
   }
-  openPopup(personPopup);
+  openPopup(profilePopup);
 }
 
 function handleEditButtonSubmit(event) {
   event.preventDefault();
-  profileName.textContent = personPopupName.value;
-  profileAbout.textContent = personPopupAbout.value;
+  profileName.textContent = profilePopupName.value;
+  profileAbout.textContent = profilePopupAbout.value;
   event.target.reset();
-  closePopup(personPopup);
+  closePopup(profilePopup);
 }
 
 function handleAddButtonClick() {
@@ -111,13 +111,9 @@ function handleAddButtonSubmit(event) {
   closePopup(addImagePopup);
 }
 
-editButton.addEventListener("click", () => {
-  openPopup(personPopup);
-});
-
 editButton.addEventListener("click", handleEditButtonClick);
 
-personForm.addEventListener("submit", handleEditButtonSubmit);
+profileForm.addEventListener("submit", handleEditButtonSubmit);
 
 addButton.addEventListener("click", handleAddButtonClick);
 

@@ -38,8 +38,12 @@
           class="popup__cross-image"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form action="#" class="popup__form" name="form">
-        <input type="text" class="popup__input popup__input_type_title" name="title" value="">
-        <input type="text" class="popup__input popup__input_type_data" name="data" value="">
+        <fieldset class="popup__form-fieldset">
+          <input type="text" id="person-title-input" class="popup__input popup__input_type_title" name="title" value="">
+          <span class="person-title-input-error popup__input-error"></span>
+          <input type="text" id="person-data-input" class="popup__input popup__input_type_data" name="data" value="">
+          <span class="person-data-input-error popup__input-error"></span>
+        </fieldset>
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
     </div>
@@ -51,13 +55,12 @@
       <h2 class="popup__title">Новое место</h2>
       <form action="#" class="popup__form" name="form">
         <fieldset class="popup__form-fieldset">
-          <input type="text" id="add-title-input" class="popup__input popup__input_type_title popup__input_type_error"
-            name="title" value="" placeholder="Название">
-          <span class="add-title-input-error popup__input-error">Вы ввели какую-то шляпу!</span>
+          <input type="text" id="add-title-input" class="popup__input popup__input_type_title" name="title" value=""
+            placeholder="Название">
+          <span class="add-title-input-error popup__input-error"></span>
           <input type="url" id="add-data-input" class="popup__input popup__input_type_data" name="data" value=""
             placeholder="Ссылка на картинку">
-          <span class="add-data-input-error popup__input-error">Исправь пока не поздно, иначе хана всему! И даже больше,
-            но об этом положено молчать!</span>
+          <span class="add-data-input-error popup__input-error"></span>
           <div>
         </fieldset>
         <button type="submit" class="popup__button">Сохранить</button>
