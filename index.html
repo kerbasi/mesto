@@ -50,10 +50,16 @@
           class="popup__cross-image"></button>
       <h2 class="popup__title">Новое место</h2>
       <form action="#" class="popup__form" name="form">
-        <input type="text" class="popup__input popup__input_type_title" name="title" value="" placeholder="Название">
-        <input type="url" class="popup__input popup__input_type_data" name="data" value=""
+        <input type="text" id="add-title-input" class="popup__input popup__input_type_title popup__input_type_error"
+          name="title" value="" placeholder="Название">
+        <span class="add-title-input-error popup__input-error">Вы ввели какую-то шляпу!</span>
+        <input type="url" id="add-data-input" class="popup__input popup__input_type_data" name="data" value=""
           placeholder="Ссылка на картинку">
-        <button type="submit" class="popup__button">Сохранить</button>
+        <span class="add-data-input-error popup__input-error">Исправь пока не поздно, иначе хана всему! И даже больше,
+          но об этом положено молчать!</span>
+        <div>
+          <button type="submit" class="popup__button">Сохранить</button>
+        </div>
       </form>
     </div>
   </div>
