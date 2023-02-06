@@ -6,7 +6,7 @@
 
 Проект представлет собой создание одностраничного сайта о путешествии по России по заранее созданному макетам из Figma:
 
-- [Основной макет](https://images.rbxcdn.com/93de166eb454c521a3c56dcd6653b4b2-app_icon_144.png)
+- [Основной макет](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1&t=kOHxLGZTk8CiMudr-1)
 - [Макет с валидацией](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 Сайт должен быть адаптивным для всех версий устройств, не иметь горизонтальных сколов и накладывающихся элементов.
