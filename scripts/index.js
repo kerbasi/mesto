@@ -26,9 +26,9 @@ function handleImageClick(evt) {
   const title = evt.target
     .closest(".element")
     .querySelector(".element__title").textContent;
-  // imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
-  // imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
-  // imagePopupTitle.textContent = title;
+  imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
+  imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
+  imagePopupTitle.textContent = title;
   openPopup(imagePopup);
 }
 
