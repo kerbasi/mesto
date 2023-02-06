@@ -24,22 +24,22 @@ const elementTemplate = document
 profilePopupName.value = profileName.textContent;
 profilePopupAbout.value = profileAbout.textContent;
 
-function handleImageClick(event) {
-  const title = event.target
+function handleImageClick(evt) {
+  const title = evt.target
     .closest(".element")
     .querySelector(".element__title").textContent;
-  imagePopupImg.setAttribute("src", event.target.getAttribute("src"));
+  imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
   imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
   imagePopupTitle.textContent = title;
   openPopup(imagePopup);
 }
 
-function handleTrashImageClick(event) {
-  event.target.closest(".element").remove();
+function handleTrashImageClick(evt) {
+  evt.target.closest(".element").remove();
 }
 
-function handleLikeImageClick(event) {
-  event.target.classList.toggle("element__heart-image_active");
+function handleLikeImageClick(evt) {
+  evt.target.classList.toggle("element__heart-image_active");
 }
 
 function createElement(name = "", link = "") {
@@ -87,8 +87,8 @@ function handleEditButtonClick() {
   openPopup(profilePopup);
 }
 
-function handleEditButtonSubmit(event) {
-  event.preventDefault();
+function handleEditButtonSubmit(evt) {
+  evt.preventDefault();
   profileName.textContent = profilePopupName.value;
   profileAbout.textContent = profilePopupAbout.value;
   closePopup(profilePopup);
@@ -98,12 +98,12 @@ function handleAddButtonClick() {
   openPopup(addImagePopup);
 }
 
-function handleAddButtonSubmit(event) {
-  event.preventDefault();
+function handleAddButtonSubmit(evt) {
+  evt.preventDefault();
   elements.prepend(
     createElement(addImagePopupTitle.value, addImagePopupUrl.value)
   );
-  event.target.reset();
+  evt.target.reset();
   closePopup(addImagePopup);
 }
 
