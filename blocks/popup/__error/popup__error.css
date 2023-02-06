@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .popup__input-error {
+  .popup__error {
     width: 238px;
   }
 }
