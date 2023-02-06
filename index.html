@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
   <script defer src="./scripts/data.js"></script>
   <script defer src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
 </head>
 <body class="page">
   <header class="header page__header">
@@ -37,11 +38,13 @@
       <button type="reset" class="popup__cross"><img src="./images/cross.svg" alt="иконка крестика"
           class="popup__cross-image"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="#" class="popup__form" name="form">
+      <form action="#" class="popup__form" name="form" novalidate>
         <fieldset class="popup__form-fieldset">
-          <input type="text" id="person-title-input" class="popup__input popup__input_type_title" name="title" value="">
+          <input type="text" id="person-title-input" class="popup__input popup__input_type_title" name="title" value=""
+            minlength="2" maxlength="40" required>
           <span class="person-title-input-error popup__input-error"></span>
-          <input type="text" id="person-data-input" class="popup__input popup__input_type_data" name="data" value="">
+          <input type="text" id="person-data-input" class="popup__input popup__input_type_data" name="data" value=""
+            minlength="2" maxlength="200" required>
           <span class="person-data-input-error popup__input-error"></span>
         </fieldset>
         <button type="submit" class="popup__button">Сохранить</button>
@@ -53,13 +56,13 @@
       <button type="reset" class="popup__cross"><img src="./images/cross.svg" alt="иконка крестика"
           class="popup__cross-image"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form action="#" class="popup__form" name="form">
+      <form action="#" class="popup__form" name="form" novalidate>
         <fieldset class="popup__form-fieldset">
           <input type="text" id="add-title-input" class="popup__input popup__input_type_title" name="title" value=""
-            placeholder="Название">
+            placeholder="Название" minlength="2" maxlength="30" required>
           <span class="add-title-input-error popup__input-error"></span>
           <input type="url" id="add-data-input" class="popup__input popup__input_type_data" name="data" value=""
-            placeholder="Ссылка на картинку">
+            placeholder="Ссылка на картинку" required>
           <span class="add-data-input-error popup__input-error"></span>
           <div>
         </fieldset>

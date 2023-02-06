@@ -21,6 +21,9 @@ const elementTemplate = document
   .querySelector("#element-template")
   .content.querySelector(".element");
 
+profilePopupName.value = profileName.textContent;
+profilePopupAbout.value = profileAbout.textContent;
+
 function handleImageClick(event) {
   const title = event.target
     .closest(".element")
@@ -81,12 +84,6 @@ function closePopup(element) {
 }
 
 function handleEditButtonClick() {
-  if (!profilePopupName.value) {
-    profilePopupName.value = profileName.textContent;
-  }
-  if (!profilePopupAbout.value) {
-    profilePopupAbout.value = profileAbout.textContent;
-  }
   openPopup(profilePopup);
 }
 
@@ -94,7 +91,6 @@ function handleEditButtonSubmit(event) {
   event.preventDefault();
   profileName.textContent = profilePopupName.value;
   profileAbout.textContent = profilePopupAbout.value;
-  event.target.reset();
   closePopup(profilePopup);
 }
 
