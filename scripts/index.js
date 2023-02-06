@@ -13,6 +13,7 @@ const addImagePopupTitle = addImagePopup.querySelector(
   ".popup__input_type_title"
 );
 const addImagePopupUrl = addImagePopup.querySelector(".popup__input_type_data");
+const addImagePopupButton = addImagePopup.querySelector(".popup__button");
 const imagePopup = document.querySelector(".popup_type_image");
 const imagePopupImg = imagePopup.querySelector(".popup__image");
 const imagePopupTitle = imagePopup.querySelector(".popup__title_type_image");
@@ -21,16 +22,13 @@ const elementTemplate = document
   .querySelector("#element-template")
   .content.querySelector(".element");
 
-profilePopupName.value = profileName.textContent;
-profilePopupAbout.value = profileAbout.textContent;
-
 function handleImageClick(evt) {
   const title = evt.target
     .closest(".element")
     .querySelector(".element__title").textContent;
-  imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
-  imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
-  imagePopupTitle.textContent = title;
+  // imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
+  // imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
+  // imagePopupTitle.textContent = title;
   openPopup(imagePopup);
 }
 
@@ -84,6 +82,14 @@ function closePopup(element) {
 }
 
 function handleEditButtonClick() {
+  const event = new Event("input", {
+    bubbles: true,
+    cancelable: true,
+  });
+  profilePopupName.value = profileName.textContent;
+  profilePopupName.dispatchEvent(event);
+  profilePopupAbout.value = profileAbout.textContent;
+  profilePopupAbout.dispatchEvent(event);
   openPopup(profilePopup);
 }
 

@@ -64,18 +64,30 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   }
 };
 
-const setEventListeners = (formElement, options) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(options.inputSelector)
-  );
-  const buttonElement = formElement.querySelector(options.submitButtonSelector);
+const setEventListeners = (
+  formElement,
+  {
+    submitButtonSelector,
+    inputSelector,
+    inactiveButtonClass,
+    errorClass,
+    inputErrorClass,
+  }
+) => {
+  const buttonElement = formElement.querySelector(submitButtonSelector);
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+
+  formElement.addEventListener("submit", () => {
+    disableButton(buttonElement, inactiveButtonClass);
+  });
+
   inputList.forEach((input) => {
     input.addEventListener("input", () => {
-      isValid(input, formElement, options.inputErrorClass, options.errorClass);
-      toggleButtonState(inputList, buttonElement, options.inactiveButtonClass);
+      isValid(input, formElement, inputErrorClass, errorClass);
+      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     });
   });
-  toggleButtonState(inputList, buttonElement, options.inactiveButtonClass);
+  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
 };
 
 const enableValidation = (options) => {
