@@ -4,39 +4,30 @@ const showInputError = (
   inputElement,
   formElement,
   inputErrorClass,
-  errorClass,
   validationMessage
 ) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
-  errorElement.classList.add(errorClass);
   errorElement.textContent = validationMessage;
 };
 
-const hideInputError = (
-  inputElement,
-  formElement,
-  inputErrorClass,
-  errorClass
-) => {
+const hideInputError = (inputElement, formElement, inputErrorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
-  errorElement.classList.remove(errorClass);
   errorElement.textContent = "";
 };
 
-const isValid = (inputElement, formElement, inputErrorClass, errorClass) => {
+const isValid = (inputElement, formElement, inputErrorClass) => {
   if (!inputElement.validity.valid) {
     const validationMessage = inputElement.validationMessage;
     showInputError(
       inputElement,
       formElement,
       inputErrorClass,
-      errorClass,
       validationMessage
     );
   } else {
-    hideInputError(inputElement, formElement, inputErrorClass, errorClass);
+    hideInputError(inputElement, formElement, inputErrorClass);
   }
 };
 
@@ -66,13 +57,7 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 
 const setEventListeners = (
   formElement,
-  {
-    submitButtonSelector,
-    inputSelector,
-    inactiveButtonClass,
-    errorClass,
-    inputErrorClass,
-  }
+  { submitButtonSelector, inputSelector, inactiveButtonClass, inputErrorClass }
 ) => {
   const buttonElement = formElement.querySelector(submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
@@ -83,7 +68,7 @@ const setEventListeners = (
 
   inputList.forEach((input) => {
     input.addEventListener("input", () => {
-      isValid(input, formElement, inputErrorClass, errorClass);
+      isValid(input, formElement, inputErrorClass);
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     });
   });
@@ -103,5 +88,4 @@ enableValidation({
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
 });
