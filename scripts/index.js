@@ -1,4 +1,7 @@
-﻿const editButton = document.querySelector(".profile__edit-button");
+﻿import Card from "./Card.js";
+import initialCards from "./data.js";
+
+const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__info-title");
 const profileAbout = document.querySelector(".profile__info-subtitle");
@@ -13,54 +16,27 @@ const addImagePopupTitle = addImagePopup.querySelector(
   ".popup__input_type_title"
 );
 const addImagePopupUrl = addImagePopup.querySelector(".popup__input_type_data");
-const addImagePopupButton = addImagePopup.querySelector(".popup__button");
 const imagePopup = document.querySelector(".popup_type_image");
 const imagePopupImg = imagePopup.querySelector(".popup__image");
 const imagePopupTitle = imagePopup.querySelector(".popup__title_type_image");
 const elements = document.querySelector(".elements");
-const elementTemplate = document
-  .querySelector("#element-template")
-  .content.querySelector(".element");
 
 function handleImageClick(evt) {
-  const title = evt.target
-    .closest(".element")
-    .querySelector(".element__title").textContent;
-  imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
-  imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
-  imagePopupTitle.textContent = title;
-  openPopup(imagePopup);
-}
-
-function handleTrashImageClick(evt) {
-  evt.target.closest(".element").remove();
-}
-
-function handleLikeImageClick(evt) {
-  evt.target.classList.toggle("element__heart-image_active");
-}
-
-function createElement(name = "", link = "") {
-  const element = elementTemplate.cloneNode(true);
-  const elementTitle = element.querySelector(".element__title");
-  const elementImage = element.querySelector(".element__image");
-  const elementTrashImage = element.querySelector(".element__trash-image");
-  const elementLikeImage = element.querySelector(".element__heart-image");
-
-  elementTitle.textContent = name;
-  elementImage.setAttribute("src", link);
-  elementImage.setAttribute("alt", `изображение ${name}`);
-
-  elementImage.addEventListener("click", handleImageClick);
-  elementTrashImage.addEventListener("click", handleTrashImageClick);
-  elementLikeImage.addEventListener("click", handleLikeImageClick);
-  return element;
+  if (evt.target.classList.contains("element__image")) {
+    const title = evt.target
+      .closest(".element")
+      .querySelector(".element__title").textContent;
+    imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
+    imagePopupImg.setAttribute("alt", `увеличенное изображение ${title}`);
+    imagePopupTitle.textContent = title;
+    openPopup(imagePopup);
+  }
 }
 
 function renderInitialElements(cardsData) {
   elements.append(
-    ...cardsData.map((card) => {
-      return createElement(card.name, card.link);
+    ...cardsData.map((cardData) => {
+      return new Card(cardData, "#element-template").generateCard();
     })
   );
 }
@@ -107,7 +83,10 @@ function handleAddButtonClick() {
 function handleAddButtonSubmit(evt) {
   evt.preventDefault();
   elements.prepend(
-    createElement(addImagePopupTitle.value, addImagePopupUrl.value)
+    new Card(
+      { name: addImagePopupTitle.value, link: addImagePopupUrl.value },
+      "#element-template"
+    ).generateCard()
   );
   evt.target.reset();
   closePopup(addImagePopup);
@@ -131,5 +110,7 @@ popups.forEach((popup) => {
     }
   });
 });
+
+elements.addEventListener("click", handleImageClick);
 
 renderInitialElements(initialCards);
