@@ -1,5 +1,13 @@
 ﻿import Card from "./Card.js";
 import initialCards from "./data.js";
+import FormValidator from "./FormValidator.js";
+
+const options = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+};
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
@@ -110,6 +118,9 @@ popups.forEach((popup) => {
     }
   });
 });
+
+new FormValidator(options, profileForm).enableValidation();
+new FormValidator(options, addImageForm).enableValidation();
 
 elements.addEventListener("click", handleImageClick);
 
