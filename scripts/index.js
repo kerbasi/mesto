@@ -1,32 +1,7 @@
 ﻿import initialCards from "./data.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-
-const options = {
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  formSelector: ".popup__form",
-};
-
-const editButton = document.querySelector(".profile__edit-button");
-const addButton = document.querySelector(".profile__add-button");
-const profileName = document.querySelector(".profile__info-title");
-const profileAbout = document.querySelector(".profile__info-subtitle");
-const profilePopup = document.querySelector(".popup_type_person");
-const profileForm = profilePopup.querySelector(".popup__form");
-const profilePopupName = profilePopup.querySelector(".popup__input_type_title");
-const profilePopupAbout = profilePopup.querySelector(".popup__input_type_data");
-const popups = document.querySelectorAll(".popup");
-const addImagePopup = document.querySelector(".popup_type_add-image");
-const addImageForm = addImagePopup.querySelector(".popup__form");
-const addImagePopupTitle = addImagePopup.querySelector(
-  ".popup__input_type_title"
-);
-const addImagePopupUrl = addImagePopup.querySelector(".popup__input_type_data");
-
-const elements = document.querySelector(".elements");
+import { options, initialCards } from "./constants.js";
 
 const formValidators = {};
 
