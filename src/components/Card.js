@@ -4,11 +4,6 @@
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
-    this._imagePopup = document.querySelector(".popup_type_image");
-    this._imagePopupImg = this._imagePopup.querySelector(".popup__image");
-    this._imagePopupTitle = this._imagePopup.querySelector(
-      ".popup__title_type_image"
-    );
   }
 
   _getTemplate() {
