@@ -4,6 +4,7 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import "./index.css";
 
 import {
   options,
@@ -18,8 +19,6 @@ import {
   addCardPopupSelector,
   addButton,
 } from "../utils/constants.js";
-
-console.log(profileForm);
 
 const handleImageClick = (data) => {
   imagePopup.open(data);
