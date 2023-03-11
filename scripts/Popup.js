@@ -16,7 +16,7 @@
         evt.target.classList.contains("popup_opened") ||
         evt.target.classList.contains("popup__cross-image")
       ) {
-        this._close();
+        this.close();
       }
     });
   }

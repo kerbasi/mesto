@@ -35,10 +35,9 @@ export const initialCards = [
 
 export const userNameSelector = ".profile__info-title";
 export const userAboutSelector = ".profile__info-subtitle";
-
 export const cardsContainerSelector = ".elements";
 export const cardTemplateSelector = "#element-template";
-
+export const imagePopupSelector = ".popup_type_image";
 // export const editButton = document.querySelector(".profile__edit-button");
 // export const addButton = document.querySelector(".profile__add-button");
 // export const profileName = document.querySelector(".profile__info-title");

@@ -1,9 +1,9 @@
 ﻿class Card {
-  constructor({ data, openPopup }, templateSelector) {
+  constructor({ data, handleImageClick }, templateSelector) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._openPopup = openPopup;
+    this._handleImageClick = handleImageClick;
     this._imagePopup = document.querySelector(".popup_type_image");
     this._imagePopupImg = this._imagePopup.querySelector(".popup__image");
     this._imagePopupTitle = this._imagePopup.querySelector(
@@ -26,16 +26,6 @@
     this._elementLikeImage.classList.toggle("element__heart-image_active");
   }
 
-  _handleImageClick(evt) {
-    this._imagePopupImg.setAttribute("src", evt.target.getAttribute("src"));
-    this._imagePopupImg.setAttribute(
-      "alt",
-      `увеличенное изображение ${this._name}`
-    );
-    this._imagePopupTitle.textContent = this._name;
-    this._openPopup(this._imagePopup);
-  }
-
   _setEventListeners() {
     this._elementTrashImage.addEventListener("click", () => {
       this._handleTrashImageClick();
@@ -44,7 +34,7 @@
       this._handleLikeImageClick();
     });
     this._elementImage.addEventListener("click", (evt) => {
-      this._handleImageClick(evt);
+      this._handleImageClick({ name: this._name, link: this._link });
     });
   }
 

@@ -2,6 +2,8 @@
 import FormValidator from "./FormValidator.js";
 import UserInfo from "./UserInfo.js";
 import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
+
 import {
   options,
   initialCards,
@@ -9,7 +11,11 @@ import {
   userAboutSelector,
   cardsContainerSelector,
   cardTemplateSelector,
+  imagePopupSelector,
 } from "./constants.js";
+
+const imagePopup = new PopupWithImage(imagePopupSelector);
+imagePopup.setEventListeners();
 
 const formValidators = {};
 
@@ -29,9 +35,13 @@ enableValidation(options, formValidators);
 
 const userInfo = new UserInfo(userNameSelector, userAboutSelector);
 
+const handleImageClick = (data) => {
+  imagePopup.open(data);
+};
+
 const initialRenderer = (item) => {
   return new Card(
-    { data: item, handleImageClick: () => {} },
+    { data: item, handleImageClick },
     cardTemplateSelector
   ).generateCard();
 };
