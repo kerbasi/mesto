@@ -1,8 +1,7 @@
 @font-face {
   font-family: "Inter";
   src: url("./inter/subset-Inter-Black.eot");
-  src: url("./inter/?#iefix") format("embedded-opentype"),
-    url("./inter/subset-Inter-Black.woff2") format("woff2"),
+  src: url("./inter/subset-Inter-Black.woff2") format("woff2"),
     url("./inter/subset-Inter-Black.woff") format("woff"),
     url("./inter/subset-Inter-Black.ttf") format("truetype"),
     url("./inter/subset-Inter-Black.svg#Inter-Black") format("svg");
@@ -14,8 +13,7 @@
 @font-face {
   font-family: "Inter";
   src: url("./inter/subset-Inter-Medium.eot");
-  src: url("./inter/subset-Inter-Medium.eot?#iefix") format("embedded-opentype"),
-    url("./inter/subset-Inter-Medium.woff2") format("woff2"),
+  src: url("./inter/subset-Inter-Medium.woff2") format("woff2"),
     url("./inter/subset-Inter-Medium.woff") format("woff"),
     url("./inter/subset-Inter-Medium.ttf") format("truetype"),
     url("./inter/subset-Inter-Medium.svg#Inter-Medium") format("svg");
@@ -27,9 +25,7 @@
 @font-face {
   font-family: "Inter";
   src: url("./inter/subset-Inter-Regular.eot");
-  src: url("./inter/subset-Inter-Regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("./inter/subset-Inter-Regular.woff2") format("woff2"),
+  src: url("./inter/subset-Inter-Regular.woff2") format("woff2"),
     url("./inter/subset-Inter-Regular.woff") format("woff"),
     url("./inter/subset-Inter-Regular.ttf") format("truetype"),
     url("./inter/subset-Inter-Regular.svg#Inter-Regular") format("svg");
