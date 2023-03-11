@@ -7,6 +7,7 @@ const options = {
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
+  formSelector: ".popup__form",
 };
 
 const editButton = document.querySelector(".profile__edit-button");
@@ -27,11 +28,21 @@ const addImagePopupUrl = addImagePopup.querySelector(".popup__input_type_data");
 
 const elements = document.querySelector(".elements");
 
-const profileFormValidation = new FormValidator(options, profileForm);
-const addImageFormValidation = new FormValidator(options, addImageForm);
+const formValidators = {};
 
-profileFormValidation.enableValidation();
-addImageFormValidation.enableValidation();
+const enableValidation = (options, formValidators) => {
+  const formList = document.querySelectorAll(options.formSelector);
+
+  formList.forEach((form) => {
+    const validation = new FormValidator(options, form);
+
+    formValidators[form.getAttribute("name")] = validation;
+
+    validation.enableValidation(options);
+  });
+};
+
+enableValidation(options, formValidators);
 
 function handleEscPress(evt) {
   if (evt.key === `Escape`) {
@@ -53,8 +64,13 @@ function handleEditButtonClick() {
   profilePopupName.value = profileName.textContent;
   profilePopupAbout.value = profileAbout.textContent;
 
-  profileFormValidation.resetValidation();
+  formValidators[profileForm.getAttribute("name")].resetValidation();
   openPopup(profilePopup);
+}
+
+function handleAddButtonClick() {
+  formValidators[addImageForm.getAttribute("name")].resetValidation();
+  openPopup(addImagePopup);
 }
 
 function handleEditButtonSubmit(evt) {
@@ -62,11 +78,6 @@ function handleEditButtonSubmit(evt) {
   profileName.textContent = profilePopupName.value;
   profileAbout.textContent = profilePopupAbout.value;
   closePopup(profilePopup);
-}
-
-function handleAddButtonClick() {
-  addImageFormValidation.resetValidation();
-  openPopup(addImagePopup);
 }
 
 function createCard(item) {
