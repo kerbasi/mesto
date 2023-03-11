@@ -12,9 +12,9 @@
   renderItems() {
     const renderedList = [];
     this._renderedItems.forEach((item) => {
-      renderList.push(renderer(item));
+      // renderedList.push(this._renderer(item));
+      this.addItem(this._renderer(item));
     });
-    this.addItem(renderedList);
   }
 }
 

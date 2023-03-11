@@ -33,26 +33,30 @@ export const initialCards = [
   },
 ];
 
-export const editButton = document.querySelector(".profile__edit-button");
-export const addButton = document.querySelector(".profile__add-button");
-export const profileName = document.querySelector(".profile__info-title");
-export const profileAbout = document.querySelector(".profile__info-subtitle");
-export const profilePopup = document.querySelector(".popup_type_person");
-export const profileForm = profilePopup.querySelector(".popup__form");
-export const profilePopupName = profilePopup.querySelector(
-  ".popup__input_type_title"
-);
-export const profilePopupAbout = profilePopup.querySelector(
-  ".popup__input_type_data"
-);
-export const popups = document.querySelectorAll(".popup");
-export const addImagePopup = document.querySelector(".popup_type_add-image");
-export const addImageForm = addImagePopup.querySelector(".popup__form");
-export const addImagePopupTitle = addImagePopup.querySelector(
-  ".popup__input_type_title"
-);
-export const addImagePopupUrl = addImagePopup.querySelector(
-  ".popup__input_type_data"
-);
+export const userNameSelector = ".profile__info-title";
+export const userAboutSelector = ".profile__info-subtitle";
 
-export const elements = document.querySelector(".elements");
+export const cardsContainerSelector = ".elements";
+export const cardTemplateSelector = "#element-template";
+
+// export const editButton = document.querySelector(".profile__edit-button");
+// export const addButton = document.querySelector(".profile__add-button");
+// export const profileName = document.querySelector(".profile__info-title");
+// export const profileAbout = document.querySelector(".profile__info-subtitle");
+// export const profilePopup = document.querySelector(".popup_type_person");
+// export const profileForm = profilePopup.querySelector(".popup__form");
+// export const profilePopupName = profilePopup.querySelector(
+//   ".popup__input_type_title"
+// );
+// export const profilePopupAbout = profilePopup.querySelector(
+//   ".popup__input_type_data"
+// );
+// export const popups = document.querySelectorAll(".popup");
+// export const addImagePopup = document.querySelector(".popup_type_add-image");
+// export const addImageForm = addImagePopup.querySelector(".popup__form");
+// export const addImagePopupTitle = addImagePopup.querySelector(
+//   ".popup__input_type_title"
+// );
+// export const addImagePopupUrl = addImagePopup.querySelector(
+//   ".popup__input_type_data"
+// );

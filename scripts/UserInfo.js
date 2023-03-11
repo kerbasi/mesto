@@ -5,7 +5,10 @@
   }
 
   getUserInfo() {
-    return { name: this._nameElement, about: this._aboutElement };
+    return {
+      name: this._nameElement.textContent,
+      about: this._aboutElement.textContent,
+    };
   }
 
   setUserInfo({ name, about }) {
