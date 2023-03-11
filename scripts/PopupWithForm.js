@@ -16,10 +16,17 @@ class PopupWithForm extends Popup {
     return inputsData;
   }
 
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
+
   setEventListeners() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      formSubmit(this._getInputValues());
+      this._formSubmit(this._getInputValues());
+      this.close();
     });
     super.setEventListeners();
   }

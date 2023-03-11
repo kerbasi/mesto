@@ -6,13 +6,11 @@
   }
 
   addItem(item) {
-    this._container.append(item);
+    this._container.prepend(item);
   }
 
   renderItems() {
-    const renderedList = [];
-    this._renderedItems.forEach((item) => {
-      // renderedList.push(this._renderer(item));
+    this._renderedItems.reverse().forEach((item) => {
       this.addItem(this._renderer(item));
     });
   }
