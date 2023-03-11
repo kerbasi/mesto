@@ -24,7 +24,7 @@ const handleImageClick = (data) => {
   imagePopup.open(data);
 };
 
-const cardRender = (item) => {
+const createCard = (item) => {
   return new Card(
     { data: item, handleImageClick },
     cardTemplateSelector
@@ -34,7 +34,7 @@ const cardRender = (item) => {
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: cardRender,
+    renderer: createCard,
   },
   cardsContainerSelector
 );
@@ -54,7 +54,7 @@ const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmit);
 profilePopup.setEventListeners();
 
 const addCardFormSubmit = (data) => {
-  cardSection.addItem(cardRender({ name: data.title, link: data.data }));
+  cardSection.addItem(createCard({ name: data.title, link: data.data }));
 };
 
 const addCardPopup = new PopupWithForm(addCardPopupSelector, addCardFormSubmit);
