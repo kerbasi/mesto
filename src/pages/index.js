@@ -4,6 +4,7 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import Api from "../components/Api.js";
 import "./index.css";
 
 import {
@@ -11,6 +12,7 @@ import {
   initialCards,
   userNameSelector,
   userAboutSelector,
+  userAvatarSelector,
   cardsContainerSelector,
   cardTemplateSelector,
   imagePopupSelector,
@@ -19,6 +21,32 @@ import {
   addCardPopupSelector,
   addButton,
 } from "../utils/constants.js";
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-63/",
+  headers: {
+    authorization: "1d6e2ff2-9c18-4685-a3c5-e532faea5955",
+    "Content-Type": "application/json",
+  },
+});
+
+const userInfo = new UserInfo(
+  userNameSelector,
+  userAboutSelector,
+  userAvatarSelector
+);
+
+api
+  .getUserInfo()
+  .then((res) => {
+    if (res.ok) return res.json();
+    return Promise.reject(res.status);
+  })
+  .then((user) => {
+    userInfo.setUserInfo({ title: user.name, data: user.about });
+    userInfo.setAvatar(user.avatar);
+  })
+  .catch((err) => console.log(err));
 
 const handleImageClick = (data) => {
   imagePopup.open(data);
@@ -31,17 +59,18 @@ const createCard = (item) => {
   ).generateCard();
 };
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: createCard,
-  },
-  cardsContainerSelector
-);
+const cardSection = new Section(cardsContainerSelector);
 
-cardSection.renderItems();
-
-const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+api
+  .getInitialCards()
+  .then((res) => {
+    if (res.ok) return res.json();
+    return Promise.reject(res.status);
+  })
+  .then((cards) =>
+    cards.forEach((card) => cardSection.addItem(createCard(card)))
+  )
+  .catch((err) => console.log(err));
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
