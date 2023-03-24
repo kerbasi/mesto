@@ -68,7 +68,7 @@ api
     return Promise.reject(res.status);
   })
   .then((cards) =>
-    cards.forEach((card) => cardSection.addItem(createCard(card)))
+    cards.reverse().forEach((card) => cardSection.addItem(createCard(card)))
   )
   .catch((err) => console.log(err));
 
@@ -76,14 +76,33 @@ const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
 
 const profileFormSubmit = (info) => {
-  userInfo.setUserInfo(info);
+  api
+    .setUserInfo(info)
+    .then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(res.status);
+    })
+    .then((user) => {
+      userInfo.setUserInfo({ title: user.name, data: user.about });
+    })
+    .catch((err) => console.log(err));
 };
 
 const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmit);
 profilePopup.setEventListeners();
 
 const addCardFormSubmit = (data) => {
-  cardSection.addItem(createCard({ name: data.title, link: data.data }));
+  api
+    .setCard({ name: data.title, link: data.data })
+    .then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(res.status);
+    })
+    .then((card) => {
+      cardSection.addItem(createCard(card));
+    })
+    .catch((err) => console.log(err));
+  // cardSection.addItem(createCard({ name: data.title, link: data.data }));
 };
 
 const addCardPopup = new PopupWithForm(addCardPopupSelector, addCardFormSubmit);
