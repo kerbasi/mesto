@@ -19,6 +19,7 @@ import {
   profilePopupSelector,
   editButton,
   addCardPopupSelector,
+  deleteCardPopupSelector,
   addButton,
 } from "../utils/constants.js";
 
@@ -52,9 +53,13 @@ const handleImageClick = (data) => {
   imagePopup.open(data);
 };
 
-const createCard = (item) => {
+const handleTrashClick = (_id) => {
+  deleteCardPopup.open(_id);
+};
+
+const createCard = (data) => {
   return new Card(
-    { data: item, handleImageClick },
+    { data, handleImageClick, handleTrashClick },
     cardTemplateSelector
   ).generateCard();
 };
@@ -102,11 +107,20 @@ const addCardFormSubmit = (data) => {
       cardSection.addItem(createCard(card));
     })
     .catch((err) => console.log(err));
-  // cardSection.addItem(createCard({ name: data.title, link: data.data }));
 };
 
 const addCardPopup = new PopupWithForm(addCardPopupSelector, addCardFormSubmit);
 addCardPopup.setEventListeners();
+
+const deleteCardFormSubmit = (_id) => {
+  api.deleteCard(_id).then((res) => console.log(res));
+};
+
+const deleteCardPopup = new PopupWithForm(
+  deleteCardPopupSelector,
+  deleteCardFormSubmit
+);
+deleteCardPopup.setEventListeners();
 
 const formValidators = {};
 

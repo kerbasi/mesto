@@ -33,6 +33,13 @@
       }),
     });
   }
+
+  deleteCard(_id) {
+    return fetch(`${this._baseUrl}cards/${_id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 }
 
 export default Api;

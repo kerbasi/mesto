@@ -25,7 +25,11 @@ class PopupWithForm extends Popup {
   setEventListeners() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._formSubmit(this._getInputValues());
+      if (this._id) {
+        this._formSubmit(this._id);
+      } else {
+        this._formSubmit(this._getInputValues());
+      }
       this.close();
     });
     super.setEventListeners();
@@ -34,6 +38,11 @@ class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  open(_id) {
+    super.open();
+    this._id = _id;
   }
 }
 
