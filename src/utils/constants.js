@@ -19,3 +19,12 @@ export const addCardPopupSelector = ".popup_type_add-image";
 export const deleteCardPopupSelector = ".popup_type_delete-image";
 export const avatarPopupSelector = ".popup_type_avatar";
 export const addButton = document.querySelector(".profile__add-button");
+export const profileSubmitButton = document.querySelector(
+  ".popup__button_type_person"
+);
+export const addImageSubmitButton = document.querySelector(
+  ".popup__button_type_add-image"
+);
+export const avatarSubmitButton = document.querySelector(
+  ".popup__button_type_avatar"
+);
