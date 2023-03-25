@@ -59,10 +59,44 @@ const handleTrashClick = (_id, elem) => {
   deleteCardPopup.open(_id, elem);
 };
 
+const handleLikeClick = (
+  _id,
+  isLiked,
+  addLike,
+  removeLike,
+  setLikesCounter
+) => {
+  if (isLiked) {
+    api
+      .removeLike(_id)
+      .then((res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(res.status);
+      })
+      .then((data) => {
+        setLikesCounter(data);
+        removeLike();
+      })
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .addLike(_id)
+      .then((res) => {
+        if (res.ok) return res.json();
+        return Promise.reject(res.status);
+      })
+      .then((data) => {
+        setLikesCounter(data);
+        addLike();
+      })
+      .catch((err) => console.log(err));
+  }
+};
+
 const createCard = (data) => {
   const userId = userInfo.getUserId();
   return new Card(
-    { data, userId, handleImageClick, handleTrashClick },
+    { data, userId, handleImageClick, handleTrashClick, handleLikeClick },
     cardTemplateSelector
   ).generateCard();
 };

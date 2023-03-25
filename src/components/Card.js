@@ -1,6 +1,6 @@
 ﻿class Card {
   constructor(
-    { data, userId, handleImageClick, handleTrashClick },
+    { data, userId, handleImageClick, handleTrashClick, handleLikeClick },
     templateSelector
   ) {
     this._name = data.name;
@@ -8,10 +8,12 @@
     this._id = data._id;
     this._userId = userId;
     this._ownerId = data.owner._id;
-    this._likeCounter = data.likes.length;
+    this._isLiked = data.likes.some((like) => like._id === this._userId);
+    this._likeCounter = this._likeCounter = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
     this._handleTrashClick = handleTrashClick.bind(this);
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -21,12 +23,34 @@
     return cardElement;
   }
 
+  _setLikesCounter(data) {
+    this._likeCounter = data.likes.length;
+  }
+
+  _addLike() {
+    this._elementLikeImage.classList.add("element__heart-image_active");
+    this._isLiked = true;
+    this._elementLikeCounter.textContent = this._likeCounter;
+  }
+
+  _removeLike() {
+    this._elementLikeImage.classList.remove("element__heart-image_active");
+    this._isLiked = false;
+    this._elementLikeCounter.textContent = this._likeCounter;
+  }
+
   _handleTrashImageClick() {
     this._handleTrashClick(this._id, this._element);
   }
 
   _handleLikeImageClick() {
-    this._elementLikeImage.classList.toggle("element__heart-image_active");
+    this._handleLikeClick(
+      this._id,
+      this._isLiked,
+      this._addLike.bind(this),
+      this._removeLike.bind(this),
+      this._setLikesCounter.bind(this)
+    );
   }
 
   _setEventListeners() {
@@ -63,6 +87,9 @@
       this._elementTrashImage.classList.add("element__trash-image_visible");
     }
 
+    if (this._isLiked) {
+      this._addLike();
+    }
     this._setEventListeners();
 
     return this._element;

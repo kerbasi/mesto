@@ -40,6 +40,20 @@
       headers: this._headers,
     });
   }
+
+  addLike(_id) {
+    return fetch(`${this._baseUrl}cards/${_id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+  }
+
+  removeLike(_id) {
+    return fetch(`${this._baseUrl}cards/${_id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 }
 
 export default Api;
