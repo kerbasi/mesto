@@ -2,6 +2,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: { main: "./src/pages/index.js" },
@@ -54,8 +55,15 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html", // путь к файлу index.html
+      favicon: `./src/images/favicon.ico`,
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [
+        // relative path is from src
+        { from: "./src/images/favicon.ico" }, // <- your path to favicon
+      ],
+    }),
   ],
 };
