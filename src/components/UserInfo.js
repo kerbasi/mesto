@@ -12,13 +12,21 @@
     };
   }
 
-  setUserInfo({ title, data }) {
+  setUserInfo({ title, data, _id }) {
     this._nameElement.textContent = title;
     this._aboutElement.textContent = data;
   }
 
   setAvatar(url) {
     this._avatarSelector.src = url;
+  }
+
+  setUserId(_id) {
+    this._userId = _id;
+  }
+
+  getUserId() {
+    return this._userId;
   }
 }
 

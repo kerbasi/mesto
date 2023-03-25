@@ -1,12 +1,17 @@
 ﻿class Card {
-  constructor({ data, handleImageClick, handleTrashClick }, templateSelector) {
+  constructor(
+    { data, userId, handleImageClick, handleTrashClick },
+    templateSelector
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
     this._likeCounter = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
-    this._handleTrashClick = handleTrashClick;
+    this._handleTrashClick = handleTrashClick.bind(this);
   }
 
   _getTemplate() {
@@ -17,7 +22,7 @@
   }
 
   _handleTrashImageClick() {
-    this._handleTrashClick(this._id);
+    this._handleTrashClick(this._id, this._element);
   }
 
   _handleLikeImageClick() {

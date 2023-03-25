@@ -4,6 +4,7 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import Api from "../components/Api.js";
 import "./index.css";
 
@@ -46,6 +47,7 @@ api
   .then((user) => {
     userInfo.setUserInfo({ title: user.name, data: user.about });
     userInfo.setAvatar(user.avatar);
+    userInfo.setUserId(user._id);
   })
   .catch((err) => console.log(err));
 
@@ -53,13 +55,14 @@ const handleImageClick = (data) => {
   imagePopup.open(data);
 };
 
-const handleTrashClick = (_id) => {
-  deleteCardPopup.open(_id);
+const handleTrashClick = (_id, elem) => {
+  deleteCardPopup.open(_id, elem);
 };
 
 const createCard = (data) => {
+  const userId = userInfo.getUserId();
   return new Card(
-    { data, handleImageClick, handleTrashClick },
+    { data, userId, handleImageClick, handleTrashClick },
     cardTemplateSelector
   ).generateCard();
 };
@@ -112,11 +115,20 @@ const addCardFormSubmit = (data) => {
 const addCardPopup = new PopupWithForm(addCardPopupSelector, addCardFormSubmit);
 addCardPopup.setEventListeners();
 
-const deleteCardFormSubmit = (_id) => {
-  api.deleteCard(_id).then((res) => console.log(res));
+const deleteCardFormSubmit = (_id, elem) => {
+  api
+    .deleteCard(_id)
+    .then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(res.status);
+    })
+    .then(() => {
+      elem.remove();
+    })
+    .catch((err) => console.log(err));
 };
 
-const deleteCardPopup = new PopupWithForm(
+const deleteCardPopup = new PopupWithSubmit(
   deleteCardPopupSelector,
   deleteCardFormSubmit
 );
@@ -127,13 +139,15 @@ const formValidators = {};
 const enableValidation = (options, formValidators) => {
   const formList = document.querySelectorAll(options.formSelector);
 
-  formList.forEach((form) => {
-    const validation = new FormValidator(options, form);
+  Array.from(formList)
+    .filter((form) => form.name !== "deleteForm")
+    .forEach((form) => {
+      const validation = new FormValidator(options, form);
 
-    formValidators[form.getAttribute("name")] = validation;
+      formValidators[form.getAttribute("name")] = validation;
 
-    validation.enableValidation(options);
-  });
+      validation.enableValidation(options);
+    });
 };
 
 enableValidation(options, formValidators);
@@ -145,6 +159,7 @@ function handleEditButtonClick() {
 }
 
 function handleAddButtonClick() {
+  console.log(imageForm);
   formValidators[imageForm.getAttribute("name")].resetValidation();
   addCardPopup.open();
 }
