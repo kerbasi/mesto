@@ -159,7 +159,6 @@ function handleEditButtonClick() {
 }
 
 function handleAddButtonClick() {
-  console.log(imageForm);
   formValidators[imageForm.getAttribute("name")].resetValidation();
   addCardPopup.open();
 }

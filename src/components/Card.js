@@ -59,6 +59,9 @@
     this._elementImage.setAttribute("src", this._link);
     this._elementImage.setAttribute("alt", `изображение ${this._name}`);
     this._elementLikeCounter.textContent = this._likeCounter;
+    if (this._ownerId === this._userId) {
+      this._elementTrashImage.classList.add("element__trash-image_visible");
+    }
 
     this._setEventListeners();
 
