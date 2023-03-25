@@ -61,6 +61,19 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_type_avatar">
+    <div class="popup__container popup__container_type_avatar">
+      <button type="reset" class="popup__cross"><img src="<%=require('./images/cross.svg')%>" alt="иконка крестика"
+          class="popup__cross-image"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form action="#" class="popup__form" name="imageForm" novalidate>
+        <input type="url" id="add-data-input" class="popup__input popup__input_type_data" name="data"
+          placeholder="Ссылка на картинку" required>
+        <span class="add-data-input-error popup__error"></span>
+        <button type="submit" class="popup__button">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_type_image">
     <div class="popup__container popup__container_type_image">
       <button type="reset" class="popup__cross"><img src="<%=require('./images/cross.svg')%>" alt="иконка крестика"

@@ -21,6 +21,7 @@ import {
   editButton,
   addCardPopupSelector,
   deleteCardPopupSelector,
+  avatarPopupSelector,
   addButton,
 } from "../utils/constants.js";
 
@@ -167,6 +168,12 @@ const deleteCardPopup = new PopupWithSubmit(
   deleteCardFormSubmit
 );
 deleteCardPopup.setEventListeners();
+
+const avatarFormSubmit = () => {};
+
+const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmit);
+avatarPopup.setEventListeners();
+avatarPopup.open();
 
 const formValidators = {};
 

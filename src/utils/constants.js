@@ -16,4 +16,5 @@ export const profilePopupSelector = ".popup_type_person";
 export const editButton = document.querySelector(".profile__edit-button");
 export const addCardPopupSelector = ".popup_type_add-image";
 export const deleteCardPopupSelector = ".popup_type_delete-image";
+export const avatarPopupSelector = ".popup_type_avatar";
 export const addButton = document.querySelector(".profile__add-button");

@@ -60,7 +60,7 @@
     this._elementLikeImage.addEventListener("click", () => {
       this._handleLikeImageClick();
     });
-    this._elementImage.addEventListener("click", (evt) => {
+    this._elementImage.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });
     });
   }
