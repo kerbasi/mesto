@@ -10,7 +10,6 @@ import "./index.css";
 
 import {
   options,
-  initialCards,
   userNameSelector,
   userAboutSelector,
   userAvatarSelector,
@@ -23,6 +22,7 @@ import {
   deleteCardPopupSelector,
   avatarPopupSelector,
   addButton,
+  avatarWrapper,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -173,7 +173,6 @@ const avatarFormSubmit = () => {};
 
 const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmit);
 avatarPopup.setEventListeners();
-avatarPopup.open();
 
 const formValidators = {};
 
@@ -207,3 +206,8 @@ function handleAddButtonClick() {
 editButton.addEventListener("click", handleEditButtonClick);
 
 addButton.addEventListener("click", handleAddButtonClick);
+
+avatarWrapper.addEventListener("click", () => {
+  formValidators[avatarForm.getAttribute("name")].resetValidation();
+  avatarPopup.open();
+});

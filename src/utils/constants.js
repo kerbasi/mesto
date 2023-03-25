@@ -9,6 +9,7 @@
 export const userNameSelector = ".profile__info-title";
 export const userAboutSelector = ".profile__info-subtitle";
 export const userAvatarSelector = ".profile__avatar";
+export const avatarWrapper = document.querySelector(".profile__avatar-wrapper");
 export const cardsContainerSelector = ".elements";
 export const cardTemplateSelector = "#element-template";
 export const imagePopupSelector = ".popup_type_image";
