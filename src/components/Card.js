@@ -39,8 +39,12 @@
     this._elementLikeCounter.textContent = this._likeCounter;
   }
 
+  _removeCard() {
+    this._element.remove();
+  }
+
   _handleTrashImageClick() {
-    this._handleTrashClick(this._id, this._element);
+    this._handleTrashClick(this._id, this._removeCard.bind(this));
   }
 
   _handleLikeImageClick() {

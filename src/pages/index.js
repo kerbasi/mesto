@@ -60,9 +60,6 @@ const handleLikeClick = (
   if (isLiked) {
     api
       .removeLike(_id)
-      .then((res) => {
-        api._getResponseData(res);
-      })
       .then((data) => {
         setLikesCounter(data);
         removeLike();
@@ -71,9 +68,6 @@ const handleLikeClick = (
   } else {
     api
       .addLike(_id)
-      .then((res) => {
-        api._getResponseData(res);
-      })
       .then((data) => {
         setLikesCounter(data);
         addLike();
@@ -93,16 +87,6 @@ const cardRenderer = (data) => {
 const cardSection = new Section(cardRenderer, cardsContainerSelector);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then((responses) => {
-    let err = "";
-    responses.forEach((res) => {
-      if (!res.ok) {
-        err = res;
-      }
-    });
-    if (err) return Promise.reject(`Ошибка: ${err.status}`);
-    return Promise.all(responses.map((response) => response.json()));
-  })
   .then((data) => {
     userInfo.setUserInfo({ title: data[0].name, data: data[0].about });
     userInfo.setAvatar(data[0].avatar);
@@ -116,47 +100,43 @@ const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
 
 const profileFormSubmit = (info) => {
-  profileSubmitButton.textContent = "Сохранение...";
+  profilePopup.setSubmitButtonText(true);
   api
     .setUserInfo(info)
-    .then((res) => {
-      api._getResponseData(res);
-    })
     .then((user) => {
       userInfo.setUserInfo({ title: user.name, data: user.about });
+      profilePopup.close();
+      profilePopup.setSubmitButtonText(false);
     })
-    .catch((err) => console.log(err))
-    .finally(() => (profileSubmitButton.textContent = "Сохранить"));
+    .catch((err) => console.log(err));
 };
 
 const profilePopup = new PopupWithForm(profilePopupSelector, profileFormSubmit);
 profilePopup.setEventListeners();
 
 const addCardFormSubmit = (data) => {
-  addImageSubmitButton.textContent = "Сохранение...";
+  addCardPopup.setSubmitButtonText(true);
   api
     .setCard({ name: data.title, link: data.data })
-    .then((res) => {
-      api._getResponseData(res);
-    })
     .then((card) => {
       cardSection.addItem(cardRenderer(card));
+      addCardPopup.close();
+      addCardPopup.setSubmitButtonText(false);
     })
-    .catch((err) => console.log(err))
-    .finally(() => (addImageSubmitButton.textContent = "Сохранить"));
+    .catch((err) => console.log(err));
 };
 
 const addCardPopup = new PopupWithForm(addCardPopupSelector, addCardFormSubmit);
 addCardPopup.setEventListeners();
 
-const deleteCardFormSubmit = (_id, elem) => {
+const deleteCardFormSubmit = (_id, removeCard) => {
+  deleteCardPopup.setSubmitButtonText(true);
   api
     .deleteCard(_id)
-    .then((res) => {
-      api._getResponseData(res);
-    })
     .then(() => {
-      elem.remove();
+      removeCard();
+      deleteCardPopup.close();
+      deleteCardPopup.setSubmitButtonText(false);
     })
     .catch((err) => console.log(err));
 };
@@ -168,17 +148,15 @@ const deleteCardPopup = new PopupWithSubmit(
 deleteCardPopup.setEventListeners();
 
 const avatarFormSubmit = ({ data }) => {
-  avatarSubmitButton.textContent = "Сохранение...";
+  avatarPopup.setSubmitButtonText(true);
   api
     .editAvatar(data)
-    .then((res) => {
-      api._getResponseData(res);
-    })
     .then((data) => {
       userInfo.setAvatar(data.avatar);
+      avatarPopup.close();
+      avatarPopup.setSubmitButtonText(false);
     })
-    .catch((err) => console.log(err))
-    .finally(() => (avatarSubmitButton.textContent = "Сохранить"));
+    .catch((err) => console.log(err));
 };
 
 const avatarPopup = new PopupWithForm(avatarPopupSelector, avatarFormSubmit);

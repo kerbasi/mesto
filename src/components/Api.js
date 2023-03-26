@@ -12,11 +12,15 @@
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}cards`, { headers: this._headers });
+    return fetch(`${this._baseUrl}cards`, { headers: this._headers }).then(
+      (res) => this._getResponseData(res)
+    );
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}users/me`, { headers: this._headers });
+    return fetch(`${this._baseUrl}users/me`, { headers: this._headers }).then(
+      (res) => this._getResponseData(res)
+    );
   }
 
   setUserInfo({ title, data }) {
@@ -27,7 +31,7 @@
         name: title,
         about: data,
       }),
-    });
+    }).then((res) => this._getResponseData(res));
   }
 
   setCard({ name, link }) {
@@ -38,28 +42,28 @@
         name,
         link,
       }),
-    });
+    }).then((res) => this._getResponseData(res));
   }
 
   deleteCard(_id) {
     return fetch(`${this._baseUrl}cards/${_id}`, {
       method: "DELETE",
       headers: this._headers,
-    });
+    }).then((res) => this._getResponseData(res));
   }
 
   addLike(_id) {
     return fetch(`${this._baseUrl}cards/${_id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    });
+    }).then((res) => this._getResponseData(res));
   }
 
   removeLike(_id) {
     return fetch(`${this._baseUrl}cards/${_id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    });
+    }).then((res) => this._getResponseData(res));
   }
 
   editAvatar(avatar) {
@@ -69,7 +73,7 @@
       body: JSON.stringify({
         avatar,
       }),
-    });
+    }).then((res) => this._getResponseData(res));
   }
 }
 
