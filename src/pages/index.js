@@ -90,7 +90,14 @@ const createCard = (data) => {
   ).generateCard();
 };
 
-const cardSection = new Section(cardsContainerSelector);
+const cardRender = (item) => {
+  return new Card(
+    { data: item, handleImageClick },
+    cardTemplateSelector
+  ).generateCard();
+};
+
+const cardSection = new Section(cardRender, cardsContainerSelector);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then((responses) => {
