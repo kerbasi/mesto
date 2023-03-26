@@ -82,7 +82,7 @@ const handleLikeClick = (
   }
 };
 
-const createCard = (data) => {
+const cardRenderer = (data) => {
   const userId = userInfo.getUserId();
   return new Card(
     { data, userId, handleImageClick, handleTrashClick, handleLikeClick },
@@ -90,14 +90,7 @@ const createCard = (data) => {
   ).generateCard();
 };
 
-const cardRender = (item) => {
-  return new Card(
-    { data: item, handleImageClick },
-    cardTemplateSelector
-  ).generateCard();
-};
-
-const cardSection = new Section(cardRender, cardsContainerSelector);
+const cardSection = new Section(cardRenderer, cardsContainerSelector);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then((responses) => {
@@ -115,7 +108,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userInfo.setAvatar(data[0].avatar);
     userInfo.setUserId(data[0]._id);
 
-    data[1].reverse().forEach((card) => cardSection.addItem(createCard(card)));
+    cardSection.renderItems(data[1]);
   })
   .catch((err) => console.log(err));
 
@@ -147,7 +140,7 @@ const addCardFormSubmit = (data) => {
       api._getResponseData(res);
     })
     .then((card) => {
-      cardSection.addItem(createCard(card));
+      cardSection.addItem(cardRenderer(card));
     })
     .catch((err) => console.log(err))
     .finally(() => (addImageSubmitButton.textContent = "Сохранить"));
