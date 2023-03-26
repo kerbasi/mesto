@@ -61,8 +61,7 @@ const handleLikeClick = (
     api
       .removeLike(_id)
       .then((res) => {
-        if (res.ok) return res.json();
-        return Promise.reject(`Ошибка: ${res.status}`);
+        api._getResponseData(res);
       })
       .then((data) => {
         setLikesCounter(data);
@@ -73,8 +72,7 @@ const handleLikeClick = (
     api
       .addLike(_id)
       .then((res) => {
-        if (res.ok) return res.json();
-        return Promise.reject(`Ошибка: ${res.status}`);
+        api._getResponseData(res);
       })
       .then((data) => {
         setLikesCounter(data);
@@ -122,8 +120,7 @@ const profileFormSubmit = (info) => {
   api
     .setUserInfo(info)
     .then((res) => {
-      if (res.ok) return res.json();
-      return Promise.reject(`Ошибка: ${res.status}`);
+      api._getResponseData(res);
     })
     .then((user) => {
       userInfo.setUserInfo({ title: user.name, data: user.about });
@@ -140,8 +137,7 @@ const addCardFormSubmit = (data) => {
   api
     .setCard({ name: data.title, link: data.data })
     .then((res) => {
-      if (res.ok) return res.json();
-      return Promise.reject(`Ошибка: ${res.status}`);
+      api._getResponseData(res);
     })
     .then((card) => {
       cardSection.addItem(createCard(card));
@@ -157,8 +153,7 @@ const deleteCardFormSubmit = (_id, elem) => {
   api
     .deleteCard(_id)
     .then((res) => {
-      if (res.ok) return res.json();
-      return Promise.reject(`Ошибка: ${res.status}`);
+      api._getResponseData(res);
     })
     .then(() => {
       elem.remove();
@@ -177,8 +172,7 @@ const avatarFormSubmit = ({ data }) => {
   api
     .editAvatar(data)
     .then((res) => {
-      if (res.ok) return res.json();
-      return Promise.reject(`Ошибка: ${res.status}`);
+      api._getResponseData(res);
     })
     .then((data) => {
       userInfo.setAvatar(data.avatar);
